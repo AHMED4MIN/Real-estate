@@ -77,7 +77,7 @@ export default function HomePage() {
               <div className="relative group">
                 <a
                   className="text-primary border-b-2 border-primary font-bold pb-1 transition-colors flex items-center gap-1"
-                  href="#"
+                  href="/buy"
                 >
                   Buy
                   <svg
@@ -95,10 +95,10 @@ export default function HomePage() {
                   </svg>
                 </a>
                 <div className="absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                  <a href="#" className="block px-4 py-2 hover:bg-primary hover:text-white transition-colors">
+                  <a href="/buy?type=houses" className="block px-4 py-2 hover:bg-primary hover:text-white transition-colors">
                     Homes
                   </a>
-                  <a href="#" className="block px-4 py-2 hover:bg-primary hover:text-white transition-colors">
+                  <a href="/buy?type=apartments" className="block px-4 py-2 hover:bg-primary hover:text-white transition-colors">
                     Apartments
                   </a>
                 </div>
@@ -108,7 +108,7 @@ export default function HomePage() {
               <div className="relative group">
                 <a
                   className="text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1"
-                  href="#"
+                  href="/rent"
                 >
                   Rent
                   <svg
@@ -126,24 +126,24 @@ export default function HomePage() {
                   </svg>
                 </a>
                 <div className="absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                  <a href="#" className="block px-4 py-2 hover:bg-primary hover:text-white transition-colors">
+                  <a href="/rent" className="block px-4 py-2 hover:bg-primary hover:text-white transition-colors">
                     Apartments
                   </a>
-                  <a href="#" className="block px-4 py-2 hover:bg-primary hover:text-white transition-colors">
+                  <a href="/rent" className="block px-4 py-2 hover:bg-primary hover:text-white transition-colors">
                     Houses
                   </a>
                 </div>
               </div>
 
-              <a className="text-on-surface-variant hover:text-primary transition-colors" href="#">
+              <a className="text-on-surface-variant hover:text-primary transition-colors" href="/sell">
                 Sell
               </a>
-              <a className="text-on-surface-variant hover:text-primary transition-colors" href="#">
+              <a className="text-on-surface-variant hover:text-primary transition-colors" href="/land">
                 Land
               </a>
               <a
                 className="text-on-surface-variant hover:text-primary transition-colors whitespace-nowrap"
-                href="#"
+                href="/agents"
               >
                 Find an Agent
               </a>

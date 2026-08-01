@@ -134,5 +134,19 @@ body { background: #fbf8ff; color: #181a2e; }
 .property-specs .material-symbols-outlined {
   font-size: 1rem;
 }
+.property-specs svg {
+  width: 1rem;
+  height: 1rem;
+  flex: 0 0 auto;
+}
 .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 .hide-scrollbar::-webkit-scrollbar { display: none; }
+
+/* Hide scrollbar globally – works in Chrome, Safari, Edge, Firefox */
+html {
+  -ms-overflow-style: none;  /* IE/Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+html::-webkit-scrollbar {
+  display: none;             /* Chrome, Safari, Edge */
+}
