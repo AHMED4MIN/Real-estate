@@ -13,6 +13,7 @@ export type Property = {
   details: string | null;
   description: string | null;
   gallery: string[] | null;
+  video_url: string | null;
   badge: string | null;
   image_url: string | null;
   published: boolean;

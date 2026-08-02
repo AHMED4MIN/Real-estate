@@ -1,6 +1,7 @@
 -- Run this once in Supabase Dashboard → SQL Editor after schema.sql.
 alter table public.properties add column if not exists description text;
 alter table public.properties add column if not exists gallery text[] not null default '{}';
+alter table public.properties add column if not exists video_url text;
 
 create table if not exists public.agents (
   id uuid primary key default gen_random_uuid(),
