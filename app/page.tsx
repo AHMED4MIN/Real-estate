@@ -2,10 +2,14 @@
 "use client"; // Required for browser APIs, state, and effects
 
 import React, { useState, useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function HomePage() {
   // ----- State for search suggestions -----
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const router = useRouter();
   const searchInputRef = useRef<HTMLInputElement>(null);
   const suggestionsRef = useRef<HTMLDivElement>(null);
 
@@ -55,9 +59,10 @@ export default function HomePage() {
     });
   };
 
-  // ----- Prevent form submissions -----
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const handleSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const query = searchQuery.trim();
+    router.push(query ? `/buy?query=${encodeURIComponent(query)}` : "/buy");
   };
 
   return (
@@ -101,39 +106,21 @@ export default function HomePage() {
                   <a href="/buy?type=apartments" className="block px-4 py-2 hover:bg-primary hover:text-white transition-colors">
                     Apartments
                   </a>
+                  <a href="/buy?type=apartments" className="block px-4 py-2 hover:bg-primary hover:text-white transition-colors">
+                    Villas
+                  </a>
                 </div>
               </div>
 
               {/* Rent Dropdown */}
-              <div className="relative group">
+
                 <a
                   className="text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1"
                   href="/rent"
                 >
                   Rent
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M19 9l-7 7-7-7"
-                    />
-                  </svg>
                 </a>
-                <div className="absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                  <a href="/rent" className="block px-4 py-2 hover:bg-primary hover:text-white transition-colors">
-                    Apartments
-                  </a>
-                  <a href="/rent" className="block px-4 py-2 hover:bg-primary hover:text-white transition-colors">
-                    Houses
-                  </a>
-                </div>
-              </div>
+                  
 
               <a className="text-on-surface-variant hover:text-primary transition-colors" href="/sell">
                 Sell
@@ -141,12 +128,12 @@ export default function HomePage() {
               <a className="text-on-surface-variant hover:text-primary transition-colors" href="/land">
                 Land
               </a>
-              <a
+              <Link
                 className="text-on-surface-variant hover:text-primary transition-colors whitespace-nowrap"
                 href="/agents"
               >
                 Find an Agent
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -214,7 +201,7 @@ export default function HomePage() {
 
       <main className="pt-20">
         {/* ===== HERO SECTION ===== */}
-        <section className="relative h-[870px] min-h-[600px] flex items-center overflow-hidden">
+        <section className="relative h-[780px] min-h-[600px] flex items-center overflow-hidden">
           <div className="absolute inset-0 z-0">
             <div
               className="w-full h-full bg-cover bg-center"
@@ -225,7 +212,7 @@ export default function HomePage() {
             />
             <div className="absolute inset-0 bg-gradient-to-r from-on-surface/60 to-transparent" />
           </div>
-          <div className="relative z-10 w-full px-margin-desktop max-w-container-max mx-auto">
+          <div className="relative z-10 w-full -translate-y-10 px-margin-desktop max-w-container-max mx-auto md:-translate-y-14">
             <div className="max-w-2xl text-on-primary">
               <h1 className="font-display-lg text-display-lg mb-stack-md">
                 Discover the Home You&apos;ve Always Dreamed Of.
@@ -243,13 +230,10 @@ export default function HomePage() {
                     Rent
                   </button>
                   <button className="px-4 py-2 rounded-full hover:bg-surface-variant/50 text-on-surface font-semibold text-sm transition-all">
-                    Sell
-                  </button>
-                  <button className="px-4 py-2 rounded-full hover:bg-surface-variant/50 text-on-surface font-semibold text-sm transition-all">
                     Land
                   </button>
                 </div>
-                <div className="relative flex items-center bg-white rounded-lg border border-outline-variant focus-within:border-primary transition-all p-1">
+                <form onSubmit={handleSearchSubmit} className="relative flex items-center bg-white rounded-lg border border-outline-variant focus-within:border-primary transition-all p-1">
                   <span className="material-symbols-outlined ml-3 text-outline">search</span>
                   <input
                     ref={searchInputRef}
@@ -257,9 +241,11 @@ export default function HomePage() {
                     id="main-search"
                     placeholder="Address, ZIP, or Neighborhood"
                     type="text"
+                    value={searchQuery}
+                    onChange={(event) => setSearchQuery(event.target.value)}
                     onFocus={() => setShowSuggestions(true)}
                   />
-                  <button className="bg-primary text-on-primary px-8 py-3 rounded-md font-bold hover:bg-primary-container transition-all">
+                  <button type="submit" className="bg-primary text-on-primary px-8 py-3 rounded-md font-bold hover:bg-primary-container transition-all">
                     Search
                   </button>
                   {/* Suggestions */}
@@ -269,20 +255,20 @@ export default function HomePage() {
                       showSuggestions ? "" : "hidden"
                     }`}
                   >
-                    <div className="px-4 py-3 hover:bg-surface-container transition-colors cursor-pointer flex items-center gap-3">
+                    <button type="button" onClick={() => { setSearchQuery("Beverly Hills"); setShowSuggestions(false); }} className="w-full px-4 py-3 hover:bg-surface-container transition-colors cursor-pointer flex items-center gap-3 text-left">
                       <span className="material-symbols-outlined text-outline">location_on</span>
                       <span className="text-on-surface">
                         Beverly Hills, <span className="text-secondary font-bold">CA</span>
                       </span>
-                    </div>
-                    <div className="px-4 py-3 hover:bg-surface-container transition-colors cursor-pointer flex items-center gap-3 border-t border-outline-variant/30">
+                    </button>
+                    <button type="button" onClick={() => { setSearchQuery("Brooklyn Heights"); setShowSuggestions(false); }} className="w-full px-4 py-3 hover:bg-surface-container transition-colors cursor-pointer flex items-center gap-3 border-t border-outline-variant/30 text-left">
                       <span className="material-symbols-outlined text-outline">location_on</span>
                       <span className="text-on-surface">
                         Brooklyn Heights, <span className="text-secondary font-bold">NY</span>
                       </span>
-                    </div>
+                    </button>
                   </div>
-                </div>
+                </form>
               </div>
             </div>
           </div>
