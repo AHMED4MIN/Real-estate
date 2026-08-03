@@ -8,7 +8,7 @@ create table if not exists public.profiles (
 
 create table if not exists public.properties (
   id uuid primary key default gen_random_uuid(),
-  listing_type text not null check (listing_type in ('sale', 'rent', 'land')),
+  listing_type text not null check (listing_type in ('sale', 'rent', 'reservation', 'land')),
   property_type text not null check (property_type in ('house', 'apartment', 'villa', 'land')),
   city text not null,
   price numeric(12, 2) not null check (price >= 0),
@@ -17,9 +17,14 @@ create table if not exists public.properties (
   address text not null,
   bedrooms numeric(3, 1),
   bathrooms numeric(3, 1),
-  area_sqft integer,
+  area_m2 integer,
   details text,
-  badge text,
+  country_support integer check (country_support in (70000, 100000)),
+  facilities text[] not null default '{}',
+  agent_id uuid,
+  is_luxury boolean not null default false,
+  is_good_deal boolean not null default false,
+  instagram_video_url text,
   image_url text,
   published boolean not null default true,
   created_at timestamptz not null default now(),
@@ -51,5 +56,5 @@ create policy "Admins can delete properties" on public.properties
 -- insert into public.profiles (id, role) values ('PASTE-ADMIN-USER-UUID', 'admin');
 
 -- Optional example property:
--- insert into public.properties (listing_type, property_type, city, price, address, bedrooms, bathrooms, area_sqft, badge, image_url)
--- values ('sale', 'house', 'Casablanca', 2500000, '123 Example Street, Casablanca', 4, 3, 2700, 'New', 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85');
+-- insert into public.properties (listing_type, property_type, city, price, address, bedrooms, bathrooms, area_m2, country_support, facilities, image_url)
+-- values ('sale', 'house', 'Casablanca', 2500000, '123 Example Street, Casablanca', 4, 3, 250, 70000, array['school', 'supermarket'], 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85');

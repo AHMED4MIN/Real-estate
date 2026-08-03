@@ -1,6 +1,6 @@
 export type Property = {
   id: string;
-  listing_type: "sale" | "rent" | "land";
+  listing_type: "sale" | "rent" | "reservation" | "land";
   property_type: "house" | "apartment" | "villa" | "land";
   city: string;
   price: number;
@@ -9,12 +9,17 @@ export type Property = {
   address: string;
   bedrooms: number | null;
   bathrooms: number | null;
-  area_sqft: number | null;
+  area_m2: number | null;
   details: string | null;
   description: string | null;
   gallery: string[] | null;
   video_url: string | null;
-  badge: string | null;
+  instagram_video_url: string | null;
+  is_luxury: boolean;
+  is_good_deal: boolean;
+  country_support: 70000 | 100000 | null;
+  facilities: string[] | null;
+  agent_id: string | null;
   image_url: string | null;
   published: boolean;
   created_at: string;
@@ -38,6 +43,9 @@ export type Agent = {
   experience: string | null;
   sales: string | null;
   languages: string | null;
+  instagram_url: string | null;
+  tiktok_url: string | null;
+  facebook_url: string | null;
   published: boolean;
 };
 
@@ -45,6 +53,6 @@ export function propertyFacts(property: Property) {
   return [
     property.bedrooms !== null ? `${property.bedrooms} Beds` : null,
     property.bathrooms !== null ? `${property.bathrooms} Baths` : null,
-    property.area_sqft !== null ? `${new Intl.NumberFormat("en-US").format(property.area_sqft)} sqft` : null,
+    property.area_m2 !== null ? `${new Intl.NumberFormat("en-US").format(property.area_m2)} m²` : null,
   ].filter(Boolean).join(" · ") || property.details || "Details available on request";
 }

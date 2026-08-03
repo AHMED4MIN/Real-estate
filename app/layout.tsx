@@ -3,8 +3,8 @@ import "./globals.css";
 import { LanguageProvider } from "@/app/components/language-provider";
 
 export const metadata: Metadata = {
-  title: "EstateFlow | Find Your Next Home",
-  description: "Discover homes, apartments, and rentals with EstateFlow.",
+  title: "Al Salah | Find Your Next Home",
+  description: "Discover homes, apartments, and rentals with Al Salah.",
 };
 
 export default function RootLayout({
