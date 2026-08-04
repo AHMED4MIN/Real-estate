@@ -49,14 +49,15 @@ export async function POST(request: NextRequest) {
   const { data: profile } = await auth.from("profiles").select("role").eq("id", user.id).single();
   if (profile?.role !== "admin") return NextResponse.json({ error: "Administrator access is required." }, { status: 403 });
 
-  const body = await request.json() as { name?: string; contentType?: string; kind?: "image" | "video" };
+  const body = await request.json() as { name?: string; contentType?: string; kind?: "image" | "video"; target?: "properties" | "agents" };
   const allowedTypes = body.kind === "video" ? videoTypes : imageTypes;
   if (!body.name || !body.contentType || !body.kind || !allowedTypes.has(body.contentType)) {
     return NextResponse.json({ error: "This file type is not allowed." }, { status: 400 });
   }
 
   const extension = body.name.split(".").pop()?.toLowerCase().replace(/[^a-z0-9]/g, "") || "file";
-  const key = `properties/${body.kind}s/${crypto.randomUUID()}.${extension}`;
+  const target = body.target === "agents" ? "agents" : "properties";
+  const key = `${target}/${body.kind}s/${crypto.randomUUID()}.${extension}`;
   const client = new S3Client({
     region: "auto",
     endpoint: settings.endpoint,

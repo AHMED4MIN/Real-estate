@@ -49,10 +49,10 @@ export type Agent = {
   published: boolean;
 };
 
-export function propertyFacts(property: Property) {
+export function propertyFacts(property: Property, t: (key: string) => string) {
   return [
-    property.bedrooms !== null ? `${property.bedrooms} Beds` : null,
-    property.bathrooms !== null ? `${property.bathrooms} Baths` : null,
+    property.bedrooms !== null ? `${property.bedrooms} ${t("beds")}` : null,
+    property.bathrooms !== null ? `${property.bathrooms} ${t("baths")}` : null,
     property.area_m2 !== null ? `${new Intl.NumberFormat("en-US").format(property.area_m2)} m²` : null,
-  ].filter(Boolean).join(" · ") || property.details || "Details available on request";
+  ].filter(Boolean).join(" · ") || property.details || t("detailsAvailableOnRequest");
 }
