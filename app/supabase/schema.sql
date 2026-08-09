@@ -12,7 +12,7 @@ create table if not exists public.properties (
   property_type text not null check (property_type in ('house', 'apartment', 'villa', 'land')),
   city text not null,
   price numeric(12, 2) not null check (price >= 0),
-  currency text not null default '$',
+  currency text not null default 'DH',
   price_suffix text,
   address text not null,
   bedrooms numeric(3, 1),

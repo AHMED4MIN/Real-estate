@@ -26,7 +26,7 @@ export type Property = {
 };
 
 export function formatPrice(property: Pick<Property, "price" | "currency" | "price_suffix">) {
-  return `${property.currency}${new Intl.NumberFormat("en-US").format(property.price)}${property.price_suffix ? ` ${property.price_suffix}` : ""}`;
+  return `${new Intl.NumberFormat("en-US").format(property.price)} DH${property.price_suffix ? ` ${property.price_suffix}` : ""}`;
 }
 
 export type Agent = {
