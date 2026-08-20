@@ -21,6 +21,8 @@ create table if not exists public.properties (
   details text,
   country_support integer check (country_support in (70000, 100000)),
   facilities text[] not null default '{}',
+  building_facilities text[] not null default '{}',
+  delivery_date date,
   agent_id uuid,
   is_luxury boolean not null default false,
   is_good_deal boolean not null default false,
@@ -28,7 +30,8 @@ create table if not exists public.properties (
   image_url text,
   published boolean not null default true,
   created_at timestamptz not null default now(),
-  updated_at timestamptz not null default now()
+  updated_at timestamptz not null default now(),
+  check (delivery_date is null or listing_type = 'reservation')
 );
 
 alter table public.profiles enable row level security;

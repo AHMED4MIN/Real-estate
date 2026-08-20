@@ -11,6 +11,25 @@ const copy: Dictionary = {
   beds: { en: "Beds", fr: "Chambres", ary: "البيوت" }, baths: { en: "Baths", fr: "Salles de bain", ary: "الحمامات" }, detailsAvailableOnRequest: { en: "Details available on request", fr: "Détails disponibles sur demande", ary: "التفاصيل متوفرة عند الطلب" },
 };
 copy.forSale = { en: "For sale", fr: "À vendre", ary: "للبيع" };
+copy.startingAt = { en: "Starting at", fr: "À partir de", ary: "ابتداء من" };
+copy.locale = { en: "en-US", fr: "fr-FR", ary: "ar-MA" };
+copy.deliveryDate = { en: "Delivery in", fr: "Livraison en", ary: "التسليم في" };
+copy.buildingFacilities = { en: "Building facilities", fr: "Équipements de l'immeuble", ary: "مرافق البناية" };
+copy.pool = { en: "Pool", fr: "Piscine", ary: "مسبح" };
+copy.garden = { en: "Garden", fr: "Jardin", ary: "حديقة" };
+copy.elevator = { en: "Elevator", fr: "Ascenseur", ary: "مصعد" };
+copy["equipped kitchen"] = { en: "Equipped kitchen", fr: "Cuisine équipée", ary: "مطبخ مجهز" };
+copy.parking = { en: "Parking", fr: "Parking", ary: "موقف السيارات" };
+copy.security = { en: "Security", fr: "Sécurité", ary: "الحراسة" };
+copy.concierge = { en: "Concierge", fr: "Concierge", ary: "كونسيرج" };
+copy.gym = { en: "Gym", fr: "Salle de sport", ary: "قاعة الرياضة" };
+copy.terrace = { en: "Terrace", fr: "Terrasse", ary: "تراس" };
+copy.balcony = { en: "Balcony", fr: "Balcon", ary: "بالكون" };
+copy["air conditioning"] = { en: "Air conditioning", fr: "Climatisation", ary: "التكييف" };
+copy["central heating"] = { en: "Central heating", fr: "Chauffage central", ary: "التدفئة المركزية" };
+copy.furnished = { en: "Furnished", fr: "Meublé", ary: "مفروش" };
+copy["accessible entrance"] = { en: "Accessible entrance", fr: "Entrée accessible", ary: "مدخل مهيأ" };
+copy["storage room"] = { en: "Storage room", fr: "Débarras", ary: "مخزن" };
 copy.goodDeal = { en: "Good deal", fr: "Bonne affaire", ary: "الهوتة" };
 copy.heroTitle = { en: "Your ideal property is closer than you think.", fr: "Votre bien idéal est plus proche que vous ne l’imaginez.", ary: "عقارك المناسب، أقرب مما تتخيل" };
 copy.heroSubtitle = { en: "Discover a carefully selected range of properties for sale and rent, from apartments and houses to land plots.\n\nChoose, compare, and make your decision with confidence.", fr: "Découvrez une sélection de biens immobiliers soigneusement choisis à la vente et à la location, des appartements et maisons aux terrains à bâtir.\n\nChoisissez, comparez et prenez votre décision en toute confiance.", ary: "اكتشف مجموعة من العقارات المختارة بعناية للبيع والكراء، من الشقق والمنازل إلى البقع الأرضية.\n\nاختار، قارن، وخد قرارك بثقة" };

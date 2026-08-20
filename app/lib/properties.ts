@@ -19,6 +19,8 @@ export type Property = {
   is_good_deal: boolean;
   country_support: 70000 | 100000 | null;
   facilities: string[] | null;
+  building_facilities: string[] | null;
+  delivery_date: string | null;
   agent_id: string | null;
   image_url: string | null;
   published: boolean;
